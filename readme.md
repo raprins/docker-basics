@@ -16,6 +16,22 @@ Or with docker run
 docker run -it -v .:/usr/src/app
 ```
 
+## DB
+get an instance of Mongo DB :
+Map mongo inner data to outer (some current folder "./data/mongo")
+```
+...
+db:
+    container_name: "my-mongo-db"
+    image: "mongo"
+    volumes:
+      - ./data/mongo:/data/db
+  ...
+```
 
 ## Node Application
-Application booted with babel to use import statement
+### Docker config
+App depends_on database
+DB URL : 
+> mongodb://{container_name}:{container_port}/{init_db}
+

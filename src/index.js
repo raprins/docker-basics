@@ -4,13 +4,11 @@ const app = express()
 
 const port = process.env.PORT || 3000
 
-mongoose.connect('mongodb://localhost:27017/sample', {
-    useNewUrlParser: true,
-    user: 'mongoadmin',
-    pass: 'secret'
-})
-    .then(() => console.log('Connected successfully'))
-    .catch(() => console.log('Not connected'))
+
+mongoose.
+    connect(process.env.DATABASE_URI) //Since I called my image Name 
+    .then(() => console.log('Connected'))
+    .catch(() => console.log('Not Connected'))
 
 app.get('/', (req, res) => {
     res.json({
@@ -19,5 +17,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log('App running')
+    console.log('App running on ', port)
 })
